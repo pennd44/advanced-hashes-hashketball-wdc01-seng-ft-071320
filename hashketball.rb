@@ -205,18 +205,21 @@ end
 
 def big_shoe_rebounds
   biggest_shoe=0
+  player_with_biggest_shoe={}
   game_hash[:home][:players].each do |player|
     if player[:shoe] > biggest_shoe
       biggest_shoe = player[:shoe]
+      player_with_biggest_shoe=player
     end 
   end
-  binding.pry
   game_hash[:away][:players].each do |player|
     if player[:shoe] > biggest_shoe
       biggest_shoe = player[:shoe]
     end
     if player[:shoe] == biggest_shoe
       return player[:rebounds]
+    else
+      return player_with_biggest_shoe[:rebounds]
     end
   end
 end
